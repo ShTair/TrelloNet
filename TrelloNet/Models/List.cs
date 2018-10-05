@@ -1,6 +1,6 @@
 ﻿namespace ShComp.TrelloNet.Models
 {
-    class List
+    public class List
     {
         public string Id { get; set; }
 

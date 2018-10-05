@@ -23,19 +23,19 @@ namespace ShComp.TrelloNet
             return JsonConvert.DeserializeObject<List<Board>>(json);
         }
 
-        private async Task<List<List>> GetListsAsync(string boardId)
+        public async Task<List<List>> GetListsAsync(string boardId)
         {
             var json = await GetAsync($"https://trello.com/1/boards/{boardId}/lists?key={_apiKey}&token={_token}&fields=name");
             return JsonConvert.DeserializeObject<List<List>>(json);
         }
 
-        private async Task<List<Card>> GetCardsAsync(string listId)
+        public async Task<List<Card>> GetCardsAsync(string listId)
         {
             var json = await GetAsync($"https://api.trello.com/1/lists/{listId}/cards?key={_apiKey}&token={_token}");
             return JsonConvert.DeserializeObject<List<Card>>(json);
         }
 
-        private async Task MoveCardAsync(string cardId, string listId)
+        public async Task MoveCardAsync(string cardId, string listId)
         {
             await PutAsync($"https://api.trello.com/1/cards/{cardId}/idList?key={_apiKey}&token={_token}&value={listId}", null);
         }
