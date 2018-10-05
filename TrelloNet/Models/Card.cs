@@ -12,6 +12,8 @@ namespace ShComp.TrelloNet.Models
 
         public bool DueComplete { get; set; }
 
+        public string Name { get; set; }
+
         public object checkItemStates { get; set; }
         public bool closed { get; set; }
         public string desc { get; set; }
@@ -23,7 +25,6 @@ namespace ShComp.TrelloNet.Models
         public object idAttachmentCover { get; set; }
         public string[] idLabels { get; set; }
         public bool manualCoverAttachment { get; set; }
-        public string name { get; set; }
         public int pos { get; set; }
         public string shortLink { get; set; }
         public Badges badges { get; set; }
