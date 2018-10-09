@@ -40,6 +40,16 @@ namespace ShComp.TrelloNet
             await PutAsync($"https://api.trello.com/1/cards/{cardId}/idList?key={_apiKey}&token={_token}&value={listId}", null);
         }
 
+        public async Task AssignMemberAsync(string cardId, string memberId)
+        {
+            await PutAsync($"https://api.trello.com/1/cards/{cardId}/idMembers?key={_apiKey}&token={_token}&value={memberId}", null);
+        }
+
+        public async Task LabelAsync(string cardId, string labelId)
+        {
+            await PutAsync($"https://api.trello.com/1/cards/{cardId}/idlabels?key={_apiKey}&token={_token}&value={labelId}", null);
+        }
+
         #region Utils
 
         private async Task<string> GetAsync(string target)
@@ -55,6 +65,14 @@ namespace ShComp.TrelloNet
             using (var hc = new HttpClient())
             {
                 var response = await hc.PutAsync(target, content);
+            }
+        }
+
+        private async Task PostAsync(string target, HttpContent content)
+        {
+            using (var hc = new HttpClient())
+            {
+                var response = await hc.PostAsync(target, content);
             }
         }
 

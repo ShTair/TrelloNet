@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace ShComp.TrelloNet.Models
 {
@@ -14,6 +15,12 @@ namespace ShComp.TrelloNet.Models
 
         public string Name { get; set; }
 
+        [JsonProperty("idMembers")]
+        public string[] MemberIds { get; set; }
+
+        [JsonProperty("idLabels")]
+        public string[] LabelIds { get; set; }
+
         public object checkItemStates { get; set; }
         public bool closed { get; set; }
         public string desc { get; set; }
@@ -23,13 +30,11 @@ namespace ShComp.TrelloNet.Models
         public object[] idMembersVoted { get; set; }
         public int idShort { get; set; }
         public object idAttachmentCover { get; set; }
-        public string[] idLabels { get; set; }
         public bool manualCoverAttachment { get; set; }
         public int pos { get; set; }
         public string shortLink { get; set; }
         public Badges badges { get; set; }
         public object[] idChecklists { get; set; }
-        public string[] idMembers { get; set; }
         public Label[] labels { get; set; }
         public string shortUrl { get; set; }
         public bool subscribed { get; set; }
