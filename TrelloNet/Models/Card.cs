@@ -15,6 +15,9 @@ namespace ShComp.TrelloNet.Models
 
         public string Name { get; set; }
 
+        [JsonProperty("desc")]
+        public string Description { get; set; }
+
         [JsonProperty("idMembers")]
         public string[] MemberIds { get; set; }
 
@@ -23,7 +26,6 @@ namespace ShComp.TrelloNet.Models
 
         public object checkItemStates { get; set; }
         public bool closed { get; set; }
-        public string desc { get; set; }
         public object descData { get; set; }
         public string idBoard { get; set; }
         public string idList { get; set; }

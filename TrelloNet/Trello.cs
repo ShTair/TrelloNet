@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ShComp.TrelloNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -48,6 +49,11 @@ namespace ShComp.TrelloNet
         public async Task LabelAsync(string cardId, string labelId)
         {
             await PutAsync($"https://api.trello.com/1/cards/{cardId}/idlabels?key={_apiKey}&token={_token}&value={labelId}", null);
+        }
+
+        public async Task SetDueAsync(string cardId, DateTimeOffset due)
+        {
+            await PutAsync($"https://api.trello.com/1/cards/{cardId}/due?key={_apiKey}&token={_token}&value={due.ToUniversalTime():yyyy-MM-ddTHH:mm:ssZ}", null);
         }
 
         #region Utils
