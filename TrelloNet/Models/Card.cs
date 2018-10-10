@@ -24,6 +24,9 @@ namespace ShComp.TrelloNet.Models
         [JsonProperty("idLabels")]
         public string[] LabelIds { get; set; }
 
+        [JsonProperty("customFieldItems")]
+        public CustomFieldItem[] CustomFieldItems { get; set; }
+
         public object checkItemStates { get; set; }
         public bool closed { get; set; }
         public object descData { get; set; }
@@ -76,5 +79,19 @@ namespace ShComp.TrelloNet.Models
         public string idBoard { get; set; }
         public string name { get; set; }
         public string color { get; set; }
+    }
+
+    public class CustomFieldItem
+    {
+        public string Id { get; set; }
+
+        [JsonProperty("idValue")]
+        public string ValueId { get; set; }
+
+        [JsonProperty("idCustomField")]
+        public string CustomFieldId { get; set; }
+
+        public string idModel { get; set; }
+        public string modelType { get; set; }
     }
 }

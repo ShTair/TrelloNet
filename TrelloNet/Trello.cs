@@ -24,6 +24,12 @@ namespace ShComp.TrelloNet
             return JsonConvert.DeserializeObject<List<Board>>(json);
         }
 
+        public async Task<List<CustomField>> GetCustomFieldsAsync(string boardId)
+        {
+            var json = await GetAsync($"https://trello.com/1/boards/{boardId}/customFields?key={_apiKey}&token={_token}");
+            return JsonConvert.DeserializeObject<List<CustomField>>(json);
+        }
+
         public async Task<List<List>> GetListsAsync(string boardId)
         {
             var json = await GetAsync($"https://trello.com/1/boards/{boardId}/lists?key={_apiKey}&token={_token}&fields=name");
@@ -32,7 +38,7 @@ namespace ShComp.TrelloNet
 
         public async Task<List<Card>> GetCardsAsync(string listId)
         {
-            var json = await GetAsync($"https://api.trello.com/1/lists/{listId}/cards?key={_apiKey}&token={_token}");
+            var json = await GetAsync($"https://api.trello.com/1/lists/{listId}/cards?key={_apiKey}&token={_token}&customFieldItems=true");
             return JsonConvert.DeserializeObject<List<Card>>(json);
         }
 
