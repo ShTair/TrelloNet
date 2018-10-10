@@ -64,13 +64,7 @@ namespace ShComp.TrelloNet.Models
 
     public class Attachmentsbytype
     {
-        public Trello trello { get; set; }
-    }
-
-    public class Trello
-    {
-        public int board { get; set; }
-        public int card { get; set; }
+        public object trello { get; set; }
     }
 
     public class Label
