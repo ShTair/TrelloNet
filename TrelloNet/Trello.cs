@@ -42,9 +42,9 @@ namespace ShComp.TrelloNet
             return JsonConvert.DeserializeObject<List<Card>>(json);
         }
 
-        public async Task MoveCardAsync(string cardId, string listId)
+        public async Task MoveCardAsync(string cardId, string listId, string pos = "bottom")
         {
-            await PutAsync($"https://api.trello.com/1/cards/{cardId}/idList?key={_apiKey}&token={_token}&value={listId}", null);
+            await PutAsync($"https://api.trello.com/1/cards/{cardId}?key={_apiKey}&token={_token}&idList={listId}&pos={pos}", null);
         }
 
         public async Task AssignMemberAsync(string cardId, string memberId)
