@@ -47,6 +47,11 @@ namespace ShComp.TrelloNet
             await PutAsync($"https://api.trello.com/1/cards/{cardId}?key={_apiKey}&token={_token}&idList={listId}&pos={pos}", null);
         }
 
+        public async Task CloseCardAsync(string cardId)
+        {
+            await PutAsync($"https://api.trello.com/1/cards/{cardId}/closed?key={_apiKey}&token={_token}&value=true", null);
+        }
+
         public async Task AssignMemberAsync(string cardId, string memberId)
         {
             await PutAsync($"https://api.trello.com/1/cards/{cardId}/idMembers?key={_apiKey}&token={_token}&value={memberId}", null);
