@@ -7,11 +7,13 @@ namespace ShComp.TrelloNet.Models
     {
         public string Id { get; set; }
 
-        public DateTimeOffset DateLastActivity { get; set; }
+        [JsonProperty("dateLastActivity")]
+        public DateTimeOffset LastActivityDate { get; set; }
 
         public DateTimeOffset? Due { get; set; }
 
-        public bool DueComplete { get; set; }
+        [JsonProperty("dueComplete")]
+        public bool IsCompleted { get; set; }
 
         public string Name { get; set; }
 
