@@ -36,7 +36,7 @@ namespace ShComp.TrelloNet.Models
         public int idShort { get; set; }
         public object idAttachmentCover { get; set; }
         public bool manualCoverAttachment { get; set; }
-        public int pos { get; set; }
+        public double pos { get; set; }
         public string shortLink { get; set; }
         public Badges badges { get; set; }
         public object[] idChecklists { get; set; }
