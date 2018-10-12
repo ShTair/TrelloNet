@@ -2,6 +2,7 @@
 using ShComp.TrelloNet.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -67,6 +68,29 @@ namespace ShComp.TrelloNet
             await PutAsync($"https://api.trello.com/1/cards/{cardId}/due?key={_apiKey}&token={_token}&value={due.ToUniversalTime():yyyy-MM-ddTHH:mm:ssZ}", null);
         }
 
+        public async Task CreateCardAsync(string listId, Dictionary<string, object> parameters)
+        {
+            var sc = new StringContent(JsonConvert.SerializeObject(new { name = "テスト", idList = listId }));
+            //parameters["idList"] = listId;
+            await PostAsync("https://api.trello.com/1/cards", parameters, sc);
+        }
+
+        public async Task PutAsync(string target, Dictionary<string, object> parameters, HttpContent content)
+        {
+            parameters["key"] = _apiKey;
+            parameters["token"] = _token;
+            var ps = string.Join("&", parameters.Select(t => t.Key + "=" + Uri.EscapeDataString(t.Value.ToString())));
+            var response = await PutAsync(target + "?" + ps, content);
+        }
+
+        public async Task PostAsync(string target, Dictionary<string, object> parameters, HttpContent content)
+        {
+            parameters["key"] = _apiKey;
+            parameters["token"] = _token;
+            var ps = string.Join("&", parameters.Select(t => t.Key + "=" + Uri.EscapeDataString(t.Value.ToString())));
+            var response = await PostAsync(target + "?" + ps, content);
+        }
+
         #region Utils
 
         private async Task<string> GetAsync(string target)
@@ -77,19 +101,19 @@ namespace ShComp.TrelloNet
             }
         }
 
-        private async Task PutAsync(string target, HttpContent content)
+        private async Task<HttpResponseMessage> PutAsync(string target, HttpContent content)
         {
             using (var hc = new HttpClient())
             {
-                var response = await hc.PutAsync(target, content);
+                return await hc.PutAsync(target, content);
             }
         }
 
-        private async Task PostAsync(string target, HttpContent content)
+        private async Task<HttpResponseMessage> PostAsync(string target, HttpContent content)
         {
             using (var hc = new HttpClient())
             {
-                var response = await hc.PostAsync(target, content);
+                return await hc.PostAsync(target, content);
             }
         }
 
